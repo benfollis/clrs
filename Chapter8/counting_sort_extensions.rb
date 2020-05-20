@@ -5,7 +5,6 @@
 # Let k = |D| then, if the insert and conversion to an array time for the data structure holding
 # D is O(1) and O(k), and the sort of the resultant array is klogk,
 # then the running time of the new algorithm is O(n + k + klog_k)
-require 'set'
 
 def extended_counting_sort(input)
   sorted = Array.new(input.size)
@@ -22,7 +21,7 @@ def extended_counting_sort(input)
   d.each_with_index {|elem, index| counts_position_map[elem] = index }
   # copy the counts into the counts map
   counts = d.map { |i| counts_map[i] }
-  # set sum the counts up in order such that each element contiains the number of elements <= i
+  # sum the counts up in order such that each element contains the number of elements <= i
   (1..counts.size - 1).each { |i| counts[i] += counts[i - 1] }
   # and now everything works as before, including preservation
   # of the stability property, except we use the counts_position_map
