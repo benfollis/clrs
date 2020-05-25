@@ -9,21 +9,9 @@ end
 def lcs_length(s1, s2)
   m = s1.size
   n = s2.size
-  b = Array.new(m)
-  m.times { |i| b[i] = Array.new(n) }
-  #print_array(b)
-  c = Array.new(m + 1)
-  (m + 1).times { |i| c[i] = Array.new(n+1) }
-  #print_array(c)
-  c[0][0] = 0
-  m.times do |i|
-    c[i + 1][0] = 0
-  end
-  n.times do |j|
-    c[0][j + 1] = 0
-  end
-
-
+  b = Array.new(m){Array.new(n)}
+  # init everyting to zero
+  c = Array.new(m+1) { Array.new(n+1, 0)}
   m.times do |i|
     n.times do |j|
       #puts("i: #{i}, j: #{j} s1_i:#{s1[i]} s2_j:#{s2[j]}")
