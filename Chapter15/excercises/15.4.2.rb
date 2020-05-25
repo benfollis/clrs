@@ -1,3 +1,8 @@
+#Give pseudocode to reconstruct an LCS from the completed c table and the original
+# sequences X D hx1 ; x2 ; : : : ; xm i and Y D hy1 ; y2; : : : ; y n i in O.m C n/ time,
+# without using the b table.
+#
+
 require "../../Chapter15/lcs"
 
 

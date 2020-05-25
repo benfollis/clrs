@@ -50,7 +50,7 @@ def print_lcs(b, x, i, j)
   return if i==-1 || j==-1
   if b[i][j] == "d"
     print_lcs(b, x, i-1, j-1)
-    print x[i]
+    print x[i], ","
   elsif b[i][j] == "u"
     print_lcs(b, x, i-1, j)
   else
