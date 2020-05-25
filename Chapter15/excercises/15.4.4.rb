@@ -44,4 +44,33 @@ end
 result = lcs_length("ABCBDAB", "BDCABA")
 puts result
 
-#part 2
+#part 2 - this is probably based on the memoized version
+# because it seems to just follow the path of the arrows
+# instead of computing every option
+# or alternately, what if I just don't store the value one of the i,j pairs?
+# then the value of c[j] would be the value of an lcs of x[i] and y[0..j]
+
+def lcs_length_helper(x, y, i, j, c)
+  if !c[j].nil? then
+    return c[j]
+  end
+  if j == 0
+    c[j] = 0
+    return 0
+  end
+  if x[i-1] == y[j-1] then
+    c[j] = lcs_length_helper(x, y, i-1, j-1, c) + 1
+    return c[j]
+  end
+  c[j] = [lcs_length_helper(x, y, i, j-1, c), lcs_length_helper(x, y, i-1, j, c)].max
+  return c[j]
+end
+
+def lcs_length(x, y)
+  m = x.size
+  n = y.size
+  max_len = lcs_length_helper(x, y, x.size, y.size, Array.new(y.size+1))
+  max_len
+end
+
+puts lcs_length("ABCBDAB", "BDCABA")
