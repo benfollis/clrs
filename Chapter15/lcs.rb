@@ -12,19 +12,20 @@ def lcs_length(s1, s2)
   b = Array.new(m){Array.new(n)}
   # init everyting to zero
   c = Array.new(m+1) { Array.new(n+1, 0)}
-  m.times do |i|
-    n.times do |j|
+  (1..m).each do |i|
+    (1..n).each do |j|
       #puts("i: #{i}, j: #{j} s1_i:#{s1[i]} s2_j:#{s2[j]}")
       #print_array(c)
-      if (s1[i] == s2[j]) then
-        c[i+1][j+1] = c[i][j] + 1
-        b[i][j] = "d" # up and to the right
-      elsif c[i][j+1] >= c[i+1][j]
-        c[i+1][j+1] = c[i][j+1]
-        b[i][j] = "u" # up
+      # 0 indexed on the string, so have to subtract 1 when looking at it
+      if (s1[i-1] == s2[j-1]) then
+        c[i][j] = c[i-1][j-1] + 1
+        b[i-1][j-1] = "d" # up and to the right
+      elsif c[i-1][j] >= c[i][j-1]
+        c[i][j] = c[i-1][j]
+        b[i-1][j-1] = "u" # up
       else
-        c[i+1][j+1] = c[i+1][j]
-        b[i][j] = "l" #left
+        c[i][j] = c[i][j-1]
+        b[i-1][j-1] = "l" #left
       end
     end
   end
