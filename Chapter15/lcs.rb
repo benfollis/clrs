@@ -49,7 +49,9 @@ end
 s1_test = "ABCBDAB"
 s2_test = "BDCABA"
 
+
 b, c = lcs_length(s1_test, s2_test)
+print_array(c)
 print_lcs(b, s1_test, s1_test.size-1, s2_test.size-1)
 puts ""
 #Excercise 15.4.1
