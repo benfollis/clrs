@@ -1,6 +1,6 @@
 # Notes, My god 0 to 1 index conversions suck to get right
 def print_array(array)
-  array.each {|row| puts row.inspect}
+  array.each_with_index {|row, index| puts "#{index}: #{row.inspect}"}
   puts "-----"
 end
 
@@ -11,10 +11,10 @@ def lcs_length(s1, s2)
   n = s2.size
   b = Array.new(m)
   m.times { |i| b[i] = Array.new(n) }
-  print_array(b)
+  #print_array(b)
   c = Array.new(m + 1)
   (m + 1).times { |i| c[i] = Array.new(n+1) }
-  print_array(c)
+  #print_array(c)
   c[0][0] = 0
   m.times do |i|
     c[i + 1][0] = 0
@@ -26,8 +26,8 @@ def lcs_length(s1, s2)
 
   m.times do |i|
     n.times do |j|
-      puts("i: #{i}, j: #{j} s1_i:#{s1[i]} s2_j:#{s2[j]}")
-      print_array(c)
+      #puts("i: #{i}, j: #{j} s1_i:#{s1[i]} s2_j:#{s2[j]}")
+      #print_array(c)
       if (s1[i] == s2[j]) then
         c[i+1][j+1] = c[i][j] + 1
         b[i][j] = "d" # up and to the right
@@ -40,8 +40,8 @@ def lcs_length(s1, s2)
       end
     end
   end
-  print_array(c)
-  print_array(b)
+  #print_array(c)
+  #print_array(b)
   return b,c
 end
 
@@ -62,11 +62,12 @@ s2_test = "BDCABA"
 
 b, c = lcs_length(s1_test, s2_test)
 print_lcs(b, s1_test, s1_test.size-1, s2_test.size-1)
-
+puts ""
+#Excercise 15.4.1
 s1 = "10010101"
 s2 = "010110110"
 b, c = lcs_length(s1, s2)
 print_lcs(b, s1, s1.size-1, s2.size-1)
-
+puts ""
 
 
